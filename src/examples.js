@@ -4,6 +4,7 @@ import StudentList from './ex-1026/StudentList'
 import Menu from './1.選單項目/Menu'
 import Demo from './2.物件陣列處理練習/Demo'
 import Parent from './ex-1027/Parent'
+import Linepay from './LINEPAY/Linepay'
 
 //export default的時候 可以在導入(import)時直接改名稱
 import ParentPropTypes from './ex-1027-02/Parent'
@@ -49,5 +50,10 @@ export const examples = [
     name: '選單active(map-key)',
     path: './1.選單項目/Menu',
     component: Menu,
+  },
+  {
+    name: 'LinePay',
+    path: './LINEPAY/Linepay',
+    component: Linepay,
   },
 ]

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import ChildA from './ChildA'
 import ChildB from './ChildB'
 function Parent() {
-  const [parentData, setParentData] = useState('parent data')
+  // const [parentData, setParentData] = useState('parent data')
 
   //為了接收回來ChildB回傳的資料使用
   const [dataFromChildB, setDataFromChildB] = useState('123')
