@@ -9,8 +9,26 @@ import Linepay from './LINEPAY/Linepay'
 //export default的時候 可以在導入(import)時直接改名稱
 import ParentPropTypes from './ex-1027-02/Parent'
 import ParentDataFlow from './ex-1027-03/Parent'
+import InputDemo from './ex-1028/InputDemo'
+import HTML5Form from './ex-1028-02/HTML5Form'
+import Bmi from './bmi-練習/Bmi'
 
 export const examples = [
+  {
+    name: 'Bmi練習題',
+    path: './bmi-練習/Bmi',
+    component: Bmi,
+  },
+  {
+    name: '各種可控表單元件',
+    path: './ex-1028-02/HTML5Form',
+    component: HTML5Form,
+  },
+  {
+    name: '可控與不可控表單',
+    path: './ex-1028/InputDemo',
+    component: InputDemo,
+  },
   {
     name: 'props三種資料流',
     path: './ex-1027-03/Parent',
