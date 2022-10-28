@@ -14,6 +14,10 @@ function HTML5Form() {
   //select
   const [pet, setPet] = useState('')
   const optionData = ['狗勾', '卯咪', '魚魚']
+
+  //checkbox group
+  const [likeList, setLikeList] = useState(['芒果', '蘋果'])
+  const fruitOptions = ['芒果', '蘋果', '香蕉']
   return (
     <>
       <h1>文字輸入框(input-text)</h1>
@@ -73,6 +77,31 @@ function HTML5Form() {
         })}
       </select>
       <h1>核取方塊群組(checkbox group)</h1>
+      {fruitOptions.map((v, i) => {
+        return (
+          <div key={i}>
+            <input
+              type="checkbox"
+              checked={likeList.includes(v)}
+              value={v}
+              onChange={(e) => {
+                const value = e.target.value
+
+                if (likeList.includes(value)) {
+                  // 如果此項目值在state陣列中 -> 移出state陣列
+                  const newLikeList = likeList.filter((v2, i2) => v2 !== value)
+                  setLikeList(newLikeList)
+                } else {
+                  // 如果不在此state陣列中 -> 加到state陣列中
+                  const newLikeList = [...likeList, value]
+                  setLikeList(newLikeList)
+                }
+              }}
+            />
+            <label>{v}</label>
+          </div>
+        )
+      })}
     </>
   )
 }

@@ -11,9 +11,15 @@ import ParentPropTypes from './ex-1027-02/Parent'
 import ParentDataFlow from './ex-1027-03/Parent'
 import InputDemo from './ex-1028/InputDemo'
 import HTML5Form from './ex-1028-02/HTML5Form'
-import Bmi from './bmi-練習/Bmi'
+import Bmi from './bmi-practise/Bmi'
+import Birthday from './birthday-practise/Birthday'
 
 export const examples = [
+  {
+    name: 'Birthday練習題',
+    path: './birthday-練習題/Birthday',
+    component: Birthday,
+  },
   {
     name: 'Bmi練習題',
     path: './bmi-練習/Bmi',
