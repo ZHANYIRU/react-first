@@ -31,13 +31,13 @@ function Bmi() {
       <button
         onClick={() => {
           let a = width / Math.pow(height / 100, 2)
-          if(a<18.5){
+          if (a < 18.5) {
             setAnswer('過輕')
-          }else if(a >= 18.5 && a < 24){
+          } else if (a >= 18.5 && a < 24) {
             setAnswer('健康！')
-          }else if(a >= 24 && a <= 27){
+          } else if (a >= 24 && a <= 27) {
             setAnswer('過重')
-          }else{
+          } else {
             setAnswer('肥胖')
           }
           setTotal(width / Math.pow(height / 100, 2))
