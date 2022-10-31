@@ -1,7 +1,7 @@
 import JsxValue from './ex-1026/JsxValue'
 import Conter from './ex-1025/Conter'
 import StudentList from './ex-1026/StudentList'
-import Menu from './1.選單項目/Menu'
+// import Menu from './1.選單項目/Menu'
 import Demo from './2.物件陣列處理練習/Demo'
 import Parent from './ex-1027/Parent'
 import Linepay from './LINEPAY/Linepay'
@@ -13,8 +13,14 @@ import InputDemo from './ex-1028/InputDemo'
 import HTML5Form from './ex-1028-02/HTML5Form'
 import Bmi from './bmi-practise/Bmi'
 import Birthday from './birthday-practise/Birthday'
+import TodoApp from './ex-1031/TodoApp'
 
 export const examples = [
+  {
+    name: '待辦事項',
+    path: './ex-1031/TodoApp',
+    component: TodoApp,
+  },
   {
     name: 'Birthday練習題',
     path: './birthday-練習題/Birthday',
@@ -70,11 +76,11 @@ export const examples = [
     path: './ex-1026/StudentList',
     component: StudentList,
   },
-  {
-    name: '選單active(map-key)',
-    path: './1.選單項目/Menu',
-    component: Menu,
-  },
+  // {
+  //   name: '選單active(map-key)',
+  //   path: './1.選單項目/Menu',
+  //   component: Menu,
+  // },
   {
     name: 'LinePay',
     path: './LINEPAY/Linepay',

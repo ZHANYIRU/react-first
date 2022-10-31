@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 function Bmi() {
-  const [width, setWidth] = useState('')
-  const [height, setHeight] = useState('')
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
   const [total, setTotal] = useState('')
   const [answer, setAnswer] = useState('')
   return (
@@ -10,22 +10,22 @@ function Bmi() {
       <h1>BMI計算</h1>
       <label>身高：</label>
       <input
-        type="text"
-        value={height}
+        type="number"
+        value={height === 0 ? '' : height}
         onChange={(e) => {
-          setHeight(e.target.value)
+          setHeight(Number(e.target.value))
         }}
-        placeholder={'公分'}
+        placeholder={'請輸入身高(公分)'}
       />
       <br />
       <label>體重：</label>
       <input
-        type="text"
-        value={width}
+        type="number"
+        value={width === 0 ? '' : width}
         onChange={(e) => {
-          setWidth(e.target.value)
+          setWidth(Number(e.target.value))
         }}
-        placeholder={'公斤'}
+        placeholder={'請輸入體重(公斤)'}
       />
       <br />
       <button
@@ -40,7 +40,7 @@ function Bmi() {
           } else {
             setAnswer('肥胖')
           }
-          setTotal(width / Math.pow(height / 100, 2))
+          setTotal((width / Math.pow(height / 100, 2)).toFixed(1))
           //   console.log(width)
           //   console.log(Math.pow(height / 100, 2))
         }}

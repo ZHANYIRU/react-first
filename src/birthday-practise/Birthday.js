@@ -6,7 +6,7 @@ function Birthday() {
   for (let i = 1920; i <= 2010; i++) {
     year.push(i)
   }
-  const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  // const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   const [yearValue, setYearValue] = useState(0)
   const [monthValue, setMonthValue] = useState(0)
   const day = []
@@ -16,8 +16,11 @@ function Birthday() {
   }
   const [dayValue, setDayValue] = useState(0)
   const [howOld, setHowold] = useState('')
+  //18年的微秒值
   const eighteen = 568036800000
+  //使用者選的日期
   const userTime = +new Date(`${yearValue}/${monthValue}/${dayValue}`)
+  //現在的日期 +代表轉成數字
   const nowDay = +new Date()
   return (
     <>
@@ -29,13 +32,22 @@ function Birthday() {
         }}
       >
         <option>{'年'}</option>
-        {year.map((v, i) => {
+        {/* {year.map((v, i) => {
           return (
             <option key={i} value={v}>
               {v}
             </option>
           )
-        })}
+        })} */}
+        {Array(2010 - 1920 + 1)
+          .fill(1)
+          .map((v, i) => {
+            return (
+              <option key={i} value={i + 1920}>
+                {i + 1920}
+              </option>
+            )
+          })}
       </select>
       <select
         value={monthValue}
@@ -44,13 +56,22 @@ function Birthday() {
         }}
       >
         <option>{'月'}</option>
-        {month.map((v, i) => {
+        {/* {month.map((v, i) => {
           return (
             <option key={i} value={v}>
               {v}
             </option>
           )
-        })}
+        })} */}
+        {Array(12)
+          .fill(1)
+          .map((v, i) => {
+            return (
+              <option key={i} value={i + 1}>
+                {i + 1}
+              </option>
+            )
+          })}
       </select>
       <select
         value={dayValue}
