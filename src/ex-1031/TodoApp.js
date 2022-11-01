@@ -1,23 +1,34 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './TodoApp.css'
 
+import AddForm from './AddForm'
+import TodoList from './TodoList/index'
+
+const sample = [
+  {
+    id: 1,
+    text: '買牛奶',
+    completed: true,
+    editing: false,
+  },
+  { id: 2, text: '學react', completed: false, editing: false },
+]
+
 function TodoApp() {
-  const [inputValue, setInputValue] = useState('')
-  // 處理要避開輸入法拼字用Enter的指標
-  const [isComposition, setIsComposition] = useState(false)
+  // 記錄所有的todos
+  const [todos, setTodos] = useState(sample)
 
-  // 編輯用
-  const [inputEditingValue, setInputEditingValue] = useState('')
+  // 呈現用(經搜尋或過濾用)
+  //const [todosDisplay, setTodosDisplay] = useState(sample)
 
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: '買牛奶',
-      completed: true,
-      editing: false,
-    },
-    { id: 2, text: '學react', completed: false, editing: false },
-  ])
+  // 使用全app過濾條件 'all' | 'active' | 'completed'
+  const [condition, setCondition] = useState('all')
+
+  // 輸入用(可控表單元件用)
+  const [inputKeyword, setInputKeyword] = useState('')
+
+  // 按下搜尋按鈕用，真正搜尋用
+  const [searchKeyword, setSearchKeyWord] = useState('')
 
   const addTodo = (text) => {
     // id
@@ -37,7 +48,7 @@ function TodoApp() {
     setTodos(newTodos)
   }
 
-  // 用在某個id項目 true/false互換
+  // 用在某個id項目，切換completed屬性true/false
   const toggleTodoCompleted = (id) => {
     const newTodos = todos.map((v, i) => {
       if (v.id === id) return { ...v, completed: !v.completed }
@@ -48,21 +59,19 @@ function TodoApp() {
     setTodos(newTodos)
   }
 
-  // 用在某個id項目 true/false互換
+  // 用在某個id項目，切換editing屬性true/false
   const toggleTodoEditing = (id) => {
     const newTodos = todos.map((v, i) => {
       if (v.id === id) return { ...v, editing: !v.editing }
-      //這裡要關掉其它編輯中的，同時間只有一個被編輯
+      //這裡要設定其它項目 editing:false，同時間只有一個被編輯
       return { ...v, editing: false }
     })
 
     setTodos(newTodos)
   }
 
-  // 用在某個id項目改變為某值用，合併物件值
+  // 用在某個id項目改變為某值用，儲存新的值用
   const updateTodo = (id, objectValue) => {
-    // step1:  拷貝出新的物件陣列
-    // step2: 在新的物件陣列上修改
     const newTodos = todos.map((v, i) => {
       if (v.id === id) return { ...v, ...objectValue }
 
@@ -73,100 +82,67 @@ function TodoApp() {
   }
 
   const deleteTodo = (id) => {
-    // step1:  拷貝出新的物件陣列
-    // step2: 在新的物件陣列上修改
     const newTodos = todos.filter((v, i) => {
       return v.id !== id
     })
 
-    // step3: 設定回state
     setTodos(newTodos)
   }
 
   return (
     <>
       <h1>Todo待辨事項</h1>
+      <AddForm addTodo={addTodo} />
+      <hr />
       <input
         type="text"
-        value={inputValue}
+        value={inputKeyword}
         onChange={(e) => {
-          setInputValue(e.target.value)
-        }}
-        // 中文輸入法用
-        onCompositionStart={() => {
-          setIsComposition(true)
-        }}
-        onCompositionEnd={() => {
-          setIsComposition(false)
-        }}
-        onKeyDown={(e) => {
-          // 中文輸入期間不會加入到列表中
-          if (e.key === 'Enter' && isComposition === false) {
-            addTodo(e.target.value)
-
-            // 清空文字輸入框
-            setInputValue('')
-          }
+          setInputKeyword(e.target.value)
         }}
       />
-      <ul>
-        {todos.map((v, i) => {
-          // 重要！ key值會因索引值變後也會改變，這裡不能用索引值當key
-          return (
-            <li
-              key={v.id}
-              className={v.completed ? 'completed' : 'not-completed'}
-            >
-              <input
-                type="checkbox"
-                checked={v.completed}
-                onChange={() => {
-                  toggleTodoCompleted(v.id, 'completed')
-                }}
-              />
-              {v.editing ? (
-                <input
-                  type="text"
-                  value={inputEditingValue}
-                  onChange={(e) => {
-                    setInputEditingValue(e.target.value)
-                  }}
-                />
-              ) : (
-                v.text
-              )}
-              {v.editing ? (
-                <button
-                  onClick={() => {
-                    updateTodo(v.id, {
-                      text: inputEditingValue,
-                      editing: false,
-                    })
-                  }}
-                >
-                  儲存
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    toggleTodoEditing(v.id, 'editing')
-                    setInputEditingValue(v.text)
-                  }}
-                >
-                  編輯
-                </button>
-              )}
-              <button
-                onClick={() => {
-                  deleteTodo(v.id)
-                }}
-              >
-                X
-              </button>
-            </li>
-          )
-        })}
-      </ul>
+      <button
+        onClick={() => {
+          setSearchKeyWord(inputKeyword)
+          // setTodosDisplay(todos.filter((v, i) => v.text.includes(keyword)))
+        }}
+      >
+        搜尋
+      </button>
+      <hr />
+      <button
+        onClick={() => {
+          //setTodosDisplay(todos)
+          setCondition('all')
+        }}
+      >
+        全部
+      </button>
+      <button
+        onClick={() => {
+          setCondition('active')
+          // setTodosDisplay(todos.filter((v, i) => !v.completed))
+        }}
+      >
+        進行中
+      </button>
+      <button
+        onClick={() => {
+          setCondition('completed')
+          //setTodosDisplay(todos.filter((v, i) => v.completed))
+        }}
+      >
+        已完成
+      </button>
+      <TodoList
+        todos={todos}
+        searchKeyword={searchKeyword}
+        condition={condition}
+        toggleTodoCompleted={toggleTodoCompleted}
+        toggleTodoEditing={toggleTodoEditing}
+        updateTodo={updateTodo}
+        deleteTodo={deleteTodo}
+      />
     </>
   )
 }

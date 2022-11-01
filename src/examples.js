@@ -14,8 +14,14 @@ import HTML5Form from './ex-1028-02/HTML5Form'
 import Bmi from './bmi-practise/Bmi'
 import Birthday from './birthday-practise/Birthday'
 import TodoApp from './ex-1031/TodoApp'
+import MultipleInput from './ex-1101-1/MultipleInput'
 
 export const examples = [
+  {
+    name: '多個表單元素共用單一state',
+    path: './ex-1101-1/MultipleInput',
+    component: MultipleInput,
+  },
   {
     name: '待辦事項',
     path: './ex-1031/TodoApp',
