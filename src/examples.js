@@ -15,8 +15,32 @@ import Bmi from './bmi-practise/Bmi'
 import Birthday from './birthday-practise/Birthday'
 import TodoApp from './ex-1031/TodoApp'
 import MultipleInput from './ex-1101-1/MultipleInput'
+import HTML5ValidForm from './ex-1102/HTML5ValidForm'
+import Lifecycle from './ex-1102-02/Lifecycle'
+import User from './ex-1102-03/User'
+import FileUploadSample from './ex-1102-04/FileUploadSample'
 
 export const examples = [
+  {
+    name: '圖檔上傳範例',
+    path: './ex-1102-03/User./ex-1102-04/FileUploadSample',
+    component: FileUploadSample,
+  },
+  {
+    name: '從伺服器載入資料',
+    path: './ex-1102-03/User',
+    component: User,
+  },
+  {
+    name: '生命週期方法',
+    path: './ex-1102-02/Lifecycle',
+    component: Lifecycle,
+  },
+  {
+    name: 'HTML5表單驗證',
+    path: './ex-1102/HTML5ValidForm',
+    component: HTML5ValidForm,
+  },
   {
     name: '多個表單元素共用單一state',
     path: './ex-1101-1/MultipleInput',
