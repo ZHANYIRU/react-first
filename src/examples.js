@@ -19,8 +19,32 @@ import HTML5ValidForm from './ex-1102/HTML5ValidForm'
 import Lifecycle from './ex-1102-02/Lifecycle'
 import User from './ex-1102-03/User'
 import FileUploadSample from './ex-1102-04/FileUploadSample'
+import ImageDemo from './ex-1103-01/ImageDemo'
+import UserDemo from './ex-1103-02/UserDemo'
+import UserPage from './ex-1104-01/UserPage'
+import BS5Test from './ex-1104-02/BS5Test'
 
 export const examples = [
+  {
+    name: 'Bootstrap5測試',
+    path: './ex-1104-02/BS5Test',
+    component: BS5Test,
+  },
+  {
+    name: '從伺服器載入資料 分頁',
+    path: './ex-1104-01/UserPage',
+    component: UserPage,
+  },
+  {
+    name: '從伺服器載入資料 搜尋&分頁',
+    path: './ex-1103-02/UserDemo',
+    component: UserDemo,
+  },
+  {
+    name: '圖檔使用說明',
+    path: './ex-1103-01/ImageDemo',
+    component: ImageDemo,
+  },
   {
     name: '圖檔上傳範例',
     path: './ex-1102-03/User./ex-1102-04/FileUploadSample',
