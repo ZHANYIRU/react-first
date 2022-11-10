@@ -15,6 +15,8 @@ function InputDemo() {
           setInputData(e.target.value)
         }}
       />
+      <p>不可控表單</p>
+      <input type="text" />
       <button
         onClick={() => {
           setInputData('test@gmail.com')
