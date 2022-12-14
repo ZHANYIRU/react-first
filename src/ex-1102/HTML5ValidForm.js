@@ -14,6 +14,7 @@ function HTML5ValidForm() {
   })
   // true = 呈現密碼 / false = 隱藏密碼
   const [show, setShow] = useState(false)
+
   const handleFieldChange = (e) => {
     const newUser = { ...user, [e.target.name]: e.target.value }
     setUser(newUser)
